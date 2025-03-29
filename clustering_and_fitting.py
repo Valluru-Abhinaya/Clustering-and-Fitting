@@ -141,7 +141,10 @@ def perform_clustering(df, col1, col2):
 
 def plot_clustered_data(labels, data1, xkmeans, ykmeans, centre_labels):
     """Plot and save clustered data."""
-    plt.scatter(data1.iloc[:, 0], data1.iloc[:, 1], c=labels, cmap='viridis', alpha=0.5)
+    plt.scatter(
+        data1.iloc[:, 0], data1.iloc[:, 1], 
+        c=labels, cmap='viridis', alpha=0.5
+    )
     plt.scatter(xkmeans, ykmeans, c='red', marker='X', label='Cluster Centers')
     plt.title('Clustered Data')
     plt.xlabel(data1.columns[0])
