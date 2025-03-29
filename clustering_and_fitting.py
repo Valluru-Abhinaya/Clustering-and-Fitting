@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[6]:
 
 
 """
@@ -105,9 +105,9 @@ def writing(moments, col):
 
 def perform_clustering(df, col1, col2):
     """Perform clustering using K-Means."""
-    data = df[[col1, col2]].dropna()
+    data1 = df[[col1, col2]].dropna()
     scaler = StandardScaler()
-    scaled_data = scaler.fit_transform(data)
+    scaled_data = scaler.fit_transform(data1)
 
     def plot_elbow_method():
         """Plot and save the elbow method graph."""
@@ -136,16 +136,16 @@ def perform_clustering(df, col1, col2):
     plot_elbow_method()
     labels, inertia, cluster_centers = one_silhouette_inertia()
 
-    return labels, data, cluster_centers[:, 0], cluster_centers[:, 1], cluster_centers
+    return labels, data1, cluster_centers[:, 0], cluster_centers[:, 1], cluster_centers
 
 
-def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
+def plot_clustered_data(labels, data1, xkmeans, ykmeans, centre_labels):
     """Plot and save clustered data."""
-    plt.scatter(data.iloc[:, 0], data.iloc[:, 1], c=labels, cmap='viridis', alpha=0.5)
+    plt.scatter(data1.iloc[:, 0], data1.iloc[:, 1], c=labels, cmap='viridis', alpha=0.5)
     plt.scatter(xkmeans, ykmeans, c='red', marker='X', label='Cluster Centers')
     plt.title('Clustered Data')
-    plt.xlabel(data.columns[0])
-    plt.ylabel(data.columns[1])
+    plt.xlabel(data1.columns[0])
+    plt.ylabel(data1.columns[1])
     plt.legend()
     plt.savefig('clustering.png')
     plt.show()
@@ -154,9 +154,9 @@ def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
 
 def perform_fitting(df, col1, col2):
     """Perform linear regression."""
-    data = df[[col1, col2]].dropna()
-    X = data[[col1]].values.reshape(-1, 1)
-    y = data[col2].values
+    data1 = df[[col1, col2]].dropna()
+    X = data1[[col1]].values.reshape(-1, 1)
+    y = data1[col2].values
 
     model = LinearRegression()
     model.fit(X, y)
@@ -164,17 +164,17 @@ def perform_fitting(df, col1, col2):
     x_range = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
     y_pred = model.predict(x_range)
 
-    return data, x_range, y_pred
+    return data1, x_range, y_pred
 
 
-def plot_fitted_data(data, x, y):
+def plot_fitted_data(data1, x, y):
     """Plot and save the fitted data."""
     fig, ax = plt.subplots()
-    plt.scatter(data.iloc[:, 0], data.iloc[:, 1], alpha=0.5, label='Original Data')
+    plt.scatter(data1.iloc[:, 0], data1.iloc[:, 1], alpha=0.5, label='Original Data')
     plt.plot(x, y, color='red', label='Fitted Line')
     plt.title('Fitting Plot')
-    plt.xlabel(data.columns[0])
-    plt.ylabel(data.columns[1])
+    plt.xlabel(data1.columns[0])
+    plt.ylabel(data1.columns[1])
     plt.legend()
     plt.savefig('fitting.png')
     plt.show()
@@ -183,7 +183,7 @@ def plot_fitted_data(data, x, y):
 
 def main():
     """Main function to execute all tasks."""
-    df = pd.read_csv('StudentsPerformance.csv')
+    df = pd.read_csv(r'data.csv')
     df = preprocessing(df)
     col = 'math score'
     plot_relational_plot(df)
