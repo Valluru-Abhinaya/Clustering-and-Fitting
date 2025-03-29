@@ -136,7 +136,13 @@ def perform_clustering(df, col1, col2):
     plot_elbow_method()
     labels, inertia, cluster_centers = one_silhouette_inertia()
 
-    return labels, data1, cluster_centers[:, 0], cluster_centers[:, 1], cluster_centers
+    return (
+        labels, 
+        data1, 
+        cluster_centers[:, 0], 
+        cluster_centers[:, 1], 
+        cluster_centers
+    )
 
 
 def plot_clustered_data(labels, data1, xkmeans, ykmeans, centre_labels):
