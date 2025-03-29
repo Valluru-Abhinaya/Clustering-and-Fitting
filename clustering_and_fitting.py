@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -137,10 +138,10 @@ def perform_clustering(df, col1, col2):
     labels, inertia, cluster_centers = one_silhouette_inertia()
 
     return (
-        labels, 
-        data1, 
-        cluster_centers[:, 0], 
-        cluster_centers[:, 1], 
+        labels,
+        data1,
+        cluster_centers[:, 0],
+        cluster_centers[:, 1],
         cluster_centers
     )
 
@@ -148,7 +149,7 @@ def perform_clustering(df, col1, col2):
 def plot_clustered_data(labels, data1, xkmeans, ykmeans, centre_labels):
     """Plot and save clustered data."""
     plt.scatter(
-        data1.iloc[:, 0], data1.iloc[:, 1], 
+        data1.iloc[:, 0], data1.iloc[:, 1],
         c=labels, cmap='viridis', alpha=0.5
     )
     plt.scatter(xkmeans, ykmeans, c='red', marker='X', label='Cluster Centers')
@@ -180,7 +181,7 @@ def plot_fitted_data(data1, x, y):
     """Plot and save the fitted data."""
     fig, ax = plt.subplots()
     plt.scatter(
-        data1.iloc[:, 0], data1.iloc[:, 1], 
+        data1.iloc[:, 0], data1.iloc[:, 1],
         alpha=0.5, label='Original Data'
     )
     plt.plot(x, y, color='red', label='Fitted Line')
