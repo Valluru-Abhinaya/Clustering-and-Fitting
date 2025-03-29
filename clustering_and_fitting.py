@@ -170,7 +170,10 @@ def perform_fitting(df, col1, col2):
 def plot_fitted_data(data1, x, y):
     """Plot and save the fitted data."""
     fig, ax = plt.subplots()
-    plt.scatter(data1.iloc[:, 0], data1.iloc[:, 1], alpha=0.5, label='Original Data')
+    plt.scatter(
+        data1.iloc[:, 0], data1.iloc[:, 1], 
+        alpha=0.5, label='Original Data'
+    )
     plt.plot(x, y, color='red', label='Fitted Line')
     plt.title('Fitting Plot')
     plt.xlabel(data1.columns[0])
