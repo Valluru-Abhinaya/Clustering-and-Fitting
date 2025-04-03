@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[6]:
-
-
 """
 This is the template file for the clustering and fitting assignment.
 You will be expected to complete all the sections and
